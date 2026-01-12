@@ -1,0 +1,13 @@
+#biên dịch 
+*.exe
+*.o
+*.out
+*.dll
+
+# file cấu hình riêng của editor
+.vscode/
+.idea/
+*.swp
+
+# file output
+data/OUT.txt
