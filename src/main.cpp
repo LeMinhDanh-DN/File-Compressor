@@ -1,11 +1,12 @@
 #include "HuffmanTree.h"
+#include "Bitwriter.h"
 #include <iostream>
 #include <fstream>
 
 int main(){
     // DATA
     std::ifstream inp("../data/INP.txt");
-    std::ofstream out("../data/OUT.txt");
+    std::ofstream out("../data/OUT.txt", std::ios::binary);
 
     std::string text = "";
     std::string line = "";
@@ -14,14 +15,20 @@ int main(){
     }
 
     // COMPRESSION
+
+    //convert to bits
     Huffmantree DSA;
 
     DSA.built(text);
-    std::map<char,std::string> result = DSA.getENcodes();
+    std::map<char,std::string> encode = DSA.getENcodes();
 
-    for(char c : text){
-        out << result[c];
+    //write
+    Bitwriter writer;
+    for(char c: text){
+        writer.write(encode[c], out);
     }
+    writer.flush(out);
+
     inp.close();
     out.close();
 
