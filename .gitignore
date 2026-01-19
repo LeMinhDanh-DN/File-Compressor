@@ -9,5 +9,8 @@
 .idea/
 *.swp
 *.gitignore
+*.bin
+*.jpg
+*.init
 # file output
 data/OUT.txt

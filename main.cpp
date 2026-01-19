@@ -6,6 +6,8 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <chrono>
+#include <iomanip>
 
 void compress(const std::string& inf, const std::string& outf){
     std::ifstream inp(inf, std::ios::binary); // input
@@ -52,11 +54,20 @@ void compress(const std::string& inf, const std::string& outf){
     //write in zip file
     Bitwriter writer;
     char c;
-    while(inp.get(c)){
-        unsigned char u_c = (unsigned char)c;
-        Huffmancode h_c = encode[u_c];
-        writer.write(h_c.code, h_c.len, out);
+    
+    while(inp){
+        inp.read(buffer.data(), buffer.size());
+        std::streamsize cnt_byte = inp.gcount();
+
+        for(int i = 0; i< cnt_byte; i++){
+            char c = buffer[i];
+
+            unsigned char u_c = (unsigned char)c;
+            Huffmancode h_c = encode[u_c];
+            writer.write(h_c.code, h_c.len, out);
+        }
     }
+
     writer.flush(out);
 
     inp.close();
@@ -119,8 +130,8 @@ int main(int argc, char* argv[]){
 
     CLI::App app{"File compressor"};
 
-    bool com;
-    bool decom;
+    bool com = false;
+    bool decom = false;
 
     std::string input;
     std::string output;
@@ -132,7 +143,7 @@ int main(int argc, char* argv[]){
     modeGroup->require_option(1);
 
     app.add_option("input", input, "inputfile")->required();
-    app.add_option("ouput", output, "outputfile")->required();
+    app.add_option("output", output, "outputfile")->required();
 
     CLI11_PARSE(app, argc, argv);
 
