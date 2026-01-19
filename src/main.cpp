@@ -5,44 +5,54 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <vector>
 
 void compress(const std::string& inf, const std::string& outf){
     std::ifstream inp(inf, std::ios::binary); // input
     std::ofstream out(outf, std::ios::binary); // output
-
     if (!inp) {
         std::cerr << "Loi: Khong tim thay file input: " << inf << std::endl;
         return;
     }
 
-    std::string text = "";
-    char c;
-    while(inp.get(c)){
-        text += c; 
+    std::vector<char> buffer(1024 * 1024); // 1MB buffer
+    std::map<char,int> freq;
+    while(inp){
+        inp.read(buffer.data(), buffer.size());
+        
+        // streamsize = long long
+        std::streamsize cnt_byte = inp.gcount(); // -> getcount() so luogn ky tu lay dc
+        for(int i = 0; i < cnt_byte; i++){
+            char c = buffer[i];
+            freq[c]++;
+        }
     }
 
     //convert to bits
     Huffmantree DSA;
 
-    DSA.built_fromtext(text);
+    DSA.built_frommap(freq);
     Huffmancode* encode = DSA.getcodes();// du lieu ma hoa
 
     //write freq_map in header
     //1. write map location of map size 
-    int mpsize = DSA.freq_map.size();
+    int mpsize = freq.size();
     out.write(reinterpret_cast<char*>(&mpsize), sizeof(mpsize));
-
+    
     //2. write each ch and freq
-    for(auto const&[key,val] : DSA.freq_map){
+    for(auto const&[key,val] : freq){
         char c = key;
         int cnt = val;
         out.put(c); // ghi ky tu
         out.write(reinterpret_cast<char*>(&cnt), sizeof(cnt));
     }
 
+    inp.clear();
+    inp.seekg(0, std::ios::beg); // move read pointer to beginning
     //write in zip file
     Bitwriter writer;
-    for(char c: text){
+    char c;
+    while(inp.get(c)){
         unsigned char u_c = (unsigned char)c;
         Huffmancode h_c = encode[u_c];
         writer.write(h_c.code, h_c.len, out);
@@ -57,7 +67,7 @@ void compress(const std::string& inf, const std::string& outf){
 void decompress(const std::string& inf, const std::string& outf){
     std::ifstream inp(inf,std::ios::binary);
     std::ofstream out(outf,std::ios::binary);
-    
+
     if (!inp) { 
         std::cerr << "Loi: Khong tim thay file input: " << inf << std::endl;
         return;
