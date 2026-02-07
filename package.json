@@ -1,0 +1,25 @@
+{
+  "name": "file-compressor",
+  "version": "1.0.0",
+  "description": "> A lightweight file compression and decompression tool built from scratch in C++ using the Huffman coding algorithm.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarveyLe-dng/FIle-Compressor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HarveyLe-dng/FIle-Compressor/issues"
+  },
+  "homepage": "https://github.com/HarveyLe-dng/FIle-Compressor#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
