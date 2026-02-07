@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Nén File C++ & NodeJS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-file-zipper"></i> C++ File Compressor</h1>
+            <p>Nén và Giải nén file tốc độ cao bằng C++ Core</p>
+        </header>
+
+        <div class="card">
+            
+            <div class="upload-area" id="drop-zone">
+                <input type="file" id="fileInput" hidden>
+                <i class="fa-solid fa-cloud-arrow-up icon"></i>
+                <p>Kéo thả file vào đây hoặc <span class="browse-btn">Chọn file</span></p>
+                <p id="file-name" class="file-name"></p> </div>
+
+            <div class="options">
+                <label class="radio-container">
+                    <input type="radio" name="action" value="compress" checked>
+                    <span class="checkmark"></span>
+                    <i class="fa-solid fa-box-archive"></i> Nén (Compress)
+                </label>
+                
+                <label class="radio-container">
+                    <input type="radio" name="action" value="decompress">
+                    <span class="checkmark"></span>
+                    <i class="fa-solid fa-box-open"></i> Giải nén (Decompress)
+                </label>
+            </div>
+
+            <button id="btn-process" class="btn-primary">
+                Bắt đầu xử lý
+            </button>
+
+            <div id="result-area" class="result hidden">
+                <div class="loading hidden" id="loading">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Đang xử lý...
+                </div>
+                
+                <div class="success hidden" id="success">
+                    <p><i class="fa-solid fa-check-circle"></i> Xử lý thành công!</p>
+                    <a href="#" id="download-link" class="btn-download">
+                        <i class="fa-solid fa-download"></i> Tải file xuống
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        
+        <footer>
+            <p>Powered by Node.js & C++</p>
+        </footer>
+    </div>
+
+    <script></script>
+</body>
+</html>

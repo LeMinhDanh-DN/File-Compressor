@@ -1,0 +1,156 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu nền Gradient tím xanh */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 1.8rem;
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Thẻ Card chính màu trắng */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Khu vực Upload */
+.upload-area {
+    border: 2px dashed #c2cdda;
+    border-radius: 10px;
+    padding: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #f9f9f9;
+}
+
+.upload-area:hover, .upload-area.active {
+    border-color: #667eea;
+    background: #eef2ff;
+}
+
+.upload-area .icon {
+    font-size: 40px;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.browse-btn {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.file-name {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+    word-break: break-all;
+}
+
+/* Các nút lựa chọn (Radio) */
+.options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.radio-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #444;
+}
+
+/* Nút bấm chính */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #5a6fd6;
+    transform: translateY(-2px);
+}
+
+/* Khu vực kết quả */
+.result {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.loading {
+    color: #666;
+}
+
+.success {
+    color: #28a745;
+}
+
+.btn-download {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    background: #218838;
+}
+
+footer {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
