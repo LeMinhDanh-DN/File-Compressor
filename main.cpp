@@ -1,6 +1,6 @@
-#include "HuffmanTree.h"
-#include "Bitwriter.h"
-#include "CLI11.hpp"
+#include "include/HuffmanTree.h"
+#include "include/Bitwriter.h"
+#include "include/CLI11.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,7 +35,7 @@ void compress(const std::string& inf, const std::string& outf){
 
     DSA.built_frommap(freq);
     Huffmancode* encode = DSA.getcodes();// du lieu ma hoa
-
+    //write file extension in header
     //write freq_map in header
     //1. write map location of map size 
     int mpsize = freq.size();
@@ -129,7 +129,7 @@ void decompress(const std::string& inf, const std::string& outf){
 int main(int argc, char* argv[]){
 
     CLI::App app{"File compressor"};
-
+    std::cout << "Program name: " << argv[0] << '\n';
     bool com = false;
     bool decom = false;
 
@@ -149,9 +149,11 @@ int main(int argc, char* argv[]){
 
     if(com){
         compress(input, output);
+        std::cout << "compressing..." << "\n";
     }
     else{
         decompress(input,output);
+        std::cout << "decompressing..." << "\n";
     }
     return 0;
 }

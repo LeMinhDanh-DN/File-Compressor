@@ -1,4 +1,4 @@
-#include "Bitwriter.h"
+#include "../include/Bitwriter.h"
 #include <iostream>
 #include <fstream>
 

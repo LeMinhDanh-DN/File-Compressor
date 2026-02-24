@@ -1,4 +1,4 @@
-#include "HuffmanTree.h"
+#include "../include/HuffmanTree.h"
 #include <iostream>
 
 Node::Node(char ch, int freq){ // constructor

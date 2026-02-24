@@ -29,12 +29,23 @@ uploadBtn.addEventListener('click',()=>{
     formData.append('fileUpload', file);
     formData.append('action',type);
 
-    console.log(type);
     fetch('http://localhost:8080/upload', {
         method: 'POST',
         body: formData
 
     })
-    .then(res => res.json())
-    .then(data => console.log(data));
+    .then(res => res.blob())
+    .then(blob =>{
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        if(type == 'compress'){
+            link.download = 'compressed_file.zip';
+        }
+        else{
+            link.download = 'restored_file.txt';
+        }
+        link.click();
+        window.URL.revokeObjectURL(url);
+    });
 });

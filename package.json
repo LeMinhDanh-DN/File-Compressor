@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/HarveyLe-dng/FIle-Compressor#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "path": "^0.12.7"
   }
 }
